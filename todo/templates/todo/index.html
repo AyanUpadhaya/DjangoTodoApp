@@ -1,0 +1,49 @@
+
+{% extends 'todo/base.html' %}
+{% load crispy_forms_tags %}
+{%block title%}
+<title>{{title}}</title>
+{%endblock%}
+
+{%block content%}
+	<div class="d-flex justify-content-center mt-4">
+		<div style="display: flex;flex-direction: column;">
+
+			<h2>Django Todo App</h2>
+			<!-- <br> -->
+			<form action="{% url 'home' %}" method="post">
+		    		{% csrf_token %}
+
+		    		<div class="form-group">
+		    			{{ form.task}}
+					</div>
+		    		
+		    		<input class="btn btn-primary mt-2"type="submit" value="Add Task">
+			</form>
+		</div>
+		
+		
+		
+	</div>
+	{% if tasks|length == 0 %}
+			<h2 class="text-center mt-4">You don't have any task plaese add one</h2>
+
+	{% else %}
+	<div class="d-flex justify-content-center mt-4">
+
+			<div class="card" style="width: 50rem;">
+				{%for task in tasks%}
+				  <div class="card-body">
+				    <h5 class="card-title">{{task.item_text}}</h5>
+				    <a href="{% url 'task-delete' task.id %}" class="btn btn-primary">Delete</a>
+				    <a href="{% url 'update' task.id %}" class="btn btn-secondary">Update</a>
+				  </div>
+			  	{%endfor%}
+			</div>
+			<br>
+		
+	</div>
+	{% endif %}
+
+
+{%endblock%}
