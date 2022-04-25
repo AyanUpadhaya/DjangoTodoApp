@@ -34,17 +34,3 @@ class UpdateView(UpdateView):
 	success_url = reverse_lazy('home')
 
 
-# def update(request,id):
-# 	task = Todo.objects.get(id=id) #to get the task and id
-# 	form = TodoForm()
-		
-# 	if request.method == 'POST':
-# 		form= TodoForm(request.POST)
-# 		task_text = request.POST.get('task') #to get text from text box
-# 		if form.is_valid():
-# 			Todo.objects.filter(id=task.id).update(item_text=task_text)
-# 			return redirect('home')
-
-
-# 	context={'form':form,'title':'Update Task','task':task}
-# 	return render(request,'todo/update.html',context)
